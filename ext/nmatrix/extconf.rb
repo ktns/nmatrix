@@ -186,18 +186,18 @@ ldefaults = {
   atlas: ["/usr/local/lib", "/usr/local/atlas/lib", "/usr/lib", "/usr/lib64/atlas"]
 }.each{|_,dirs|dirs.select!(&Dir.method(:exist?))}
 
-have_library("clapack") # Usually only applies for Mac OS X
-
-have_library('lapack_atlas', 'clapack_dgetrf')
-
-dir_config("lapack")
-find_library("lapack", nil, *ldefaults[:lapack])
+dir_config("atlas")
+find_library("atlas", nil, *ldefaults[:atlas])
 
 dir_config("cblas")
 find_library("cblas", nil, *ldefaults[:cblas])
 
-dir_config("atlas")
-find_library("atlas", nil, *ldefaults[:atlas])
+dir_config("lapack")
+find_library("lapack", nil, *ldefaults[:lapack])
+
+have_library('lapack_atlas', 'clapack_dgetrf')
+
+have_library("clapack") # Usually only applies for Mac OS X
 
 # If BLAS and LAPACK headers are in an atlas directory, prefer those. Otherwise,
 # we try our luck with the default location.
@@ -224,8 +224,6 @@ have_func("cblas_dgemm", "cblas.h")
 #find_library("lapack", "clapack_dgetrf")
 #find_library("cblas", "cblas_dgemm")
 #find_library("atlas", "ATL_dgemmNN")
-# Order matters here: ATLAS has to go after LAPACK: http://mail.scipy.org/pipermail/scipy-user/2007-January/010717.html
-$libs += " -llapack -lcblas -latlas "
 #$libs += " -lprofiler "
 
 
