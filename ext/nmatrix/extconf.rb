@@ -204,7 +204,7 @@ have_library("clapack") # Usually only applies for Mac OS X
 if have_header("atlas/cblas.h") or find_header("atlas/cblas.h", *idefaults[:atlas])
   have_header("atlas/clapack.h") or find_header("atlas/clapack.h", *idefaults[:atlas])
 else
-  have_header("cblas.h") or have_header("cblas.h", *idefaults[:atlas])
+  have_header("cblas.h") or find_header("cblas.h", *idefaults[:atlas])
   have_header("clapack.h") or find_header("clapack.h", *idefaults[:atlas])
 end
 
