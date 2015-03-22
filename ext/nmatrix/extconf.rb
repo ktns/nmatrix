@@ -213,11 +213,11 @@ end
 # applies a :to_s to the second arg and doesn't actually check each one. We may want to put
 # have_func calls inside an :each block which checks atlas/clapack.h, cblas.h, clapack.h, and
 # lastly lapack.h. On Ubuntu, it only works if I use atlas/clapack.h. --@mohawkjohn 8/20/14
-have_func("clapack_dgetrf", "atlas/clapack.h")
-have_func("clapack_dgetri", "atlas/clapack.h")
+have_func("clapack_dgetrf", "atlas/clapack.h") or have_func("clapack_dgetrf", "clapack.h")
+have_func("clapack_dgetri", "atlas/clapack.h") or have_func("clapack_dgetri", "clapack.h")
 have_func("dgesvd_", "clapack.h") # This may not do anything. dgesvd_ seems to be in LAPACK, not CLAPACK.
 
-have_func("cblas_dgemm", "cblas.h")
+have_func("cblas_dgemm", "atlas/cblas.h") or have_func("cblas_dgemm", "cblas.h")
 
 #have_func("rb_scan_args", "ruby.h")
 
