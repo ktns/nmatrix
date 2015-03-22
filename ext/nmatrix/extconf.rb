@@ -190,25 +190,22 @@ have_library("clapack") # Usually only applies for Mac OS X
 
 have_library('lapack_atlas', 'clapack_dgetrf')
 
-unless have_library("lapack")
-  dir_config("lapack", idefaults[:lapack], ldefaults[:lapack])
-end
+dir_config("lapack")
+find_library("lapack", nil, *ldefaults[:lapack])
 
-unless have_library("cblas")
-  dir_config("cblas", idefaults[:cblas], ldefaults[:cblas])
-end
+dir_config("cblas")
+find_library("cblas", nil, *ldefaults[:cblas])
 
-unless have_library("atlas")
-  dir_config("atlas", idefaults[:atlas], ldefaults[:atlas])
-end
+dir_config("atlas")
+find_library("atlas", nil, *ldefaults[:atlas])
 
 # If BLAS and LAPACK headers are in an atlas directory, prefer those. Otherwise,
 # we try our luck with the default location.
-if have_header("atlas/cblas.h")
-  have_header("atlas/clapack.h")
+if have_header("atlas/cblas.h") or find_header("atlas/cblas.h", *idefaults[:atlas])
+  have_header("atlas/clapack.h") or find_header("atlas/clapack.h", *idefaults[:atlas])
 else
-  have_header("cblas.h")
-  have_header("clapack.h")
+  have_header("cblas.h") or have_header("cblas.h", *idefaults[:atlas])
+  have_header("clapack.h") or find_header("clapack.h", *idefaults[:atlas])
 end
 
 
