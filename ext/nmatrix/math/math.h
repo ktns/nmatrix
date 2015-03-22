@@ -553,7 +553,7 @@ inline int potrf(const enum CBLAS_ORDER order, const enum CBLAS_UPLO uplo, const
   return 0;
 }
 
-#if defined HAVE_CLAPACK_H || defined HAVE_ATLAS_CLAPACK_H
+#ifdef HAVE_CLAPACK_DGETRF
 template <>
 inline int potrf(const enum CBLAS_ORDER order, const enum CBLAS_UPLO uplo, const int N, float* A, const int lda) {
   return clapack_spotrf(order, uplo, N, A, lda);

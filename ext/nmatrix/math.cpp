@@ -1469,7 +1469,7 @@ static VALUE nm_clapack_lauum(VALUE self, VALUE order, VALUE uplo, VALUE n, VALU
       NULL, NULL, NULL, NULL, NULL,
       nm::math::clapack_lauum<false, float>,
       nm::math::clapack_lauum<false, double>,
-#if defined (HAVE_CLAPACK_H) || defined (HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
       clapack_clauum, clapack_zlauum, // call directly, same function signature!
 #else // Especially important for Mac OS, which doesn't seem to include the ATLAS clapack interface.
       nm::math::clapack_lauum<true, nm::Complex64>,
@@ -1524,7 +1524,7 @@ static VALUE nm_clapack_getrf(VALUE self, VALUE order, VALUE m, VALUE n, VALUE a
       NULL, NULL, NULL, NULL, NULL, // integers not allowed due to division
       nm::math::clapack_getrf<float>,
       nm::math::clapack_getrf<double>,
-#if defined (HAVE_CLAPACK_H) || defined (HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
       clapack_cgetrf, clapack_zgetrf, // call directly, same function signature!
 #else // Especially important for Mac OS, which doesn't seem to include the ATLAS clapack interface.
       nm::math::clapack_getrf<nm::Complex64>,
@@ -1571,7 +1571,7 @@ static VALUE nm_clapack_getrf(VALUE self, VALUE order, VALUE m, VALUE n, VALUE a
  * Returns an array giving the pivot indices (normally these are argument #5).
  */
 static VALUE nm_clapack_potrf(VALUE self, VALUE order, VALUE uplo, VALUE n, VALUE a, VALUE lda) {
-#if !defined(HAVE_CLAPACK_H) && !defined(HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
   rb_raise(rb_eNotImpError, "potrf currently requires CLAPACK");
 #endif
 
@@ -1579,7 +1579,7 @@ static VALUE nm_clapack_potrf(VALUE self, VALUE order, VALUE uplo, VALUE n, VALU
       NULL, NULL, NULL, NULL, NULL, // integers not allowed due to division
       nm::math::clapack_potrf<float>,
       nm::math::clapack_potrf<double>,
-#if defined (HAVE_CLAPACK_H) || defined (HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
       clapack_cpotrf, clapack_zpotrf, // call directly, same function signature!
 #else // Especially important for Mac OS, which doesn't seem to include the ATLAS clapack interface.
       nm::math::clapack_potrf<nm::Complex64>,
@@ -1615,7 +1615,7 @@ static VALUE nm_clapack_getrs(VALUE self, VALUE order, VALUE trans, VALUE n, VAL
       NULL, NULL, NULL, NULL, NULL, // integers not allowed due to division
       nm::math::clapack_getrs<float>,
       nm::math::clapack_getrs<double>,
-#if defined (HAVE_CLAPACK_H) || defined (HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
       clapack_cgetrs, clapack_zgetrs, // call directly, same function signature!
 #else // Especially important for Mac OS, which doesn't seem to include the ATLAS clapack interface.
       nm::math::clapack_getrs<nm::Complex64>,
@@ -1661,7 +1661,7 @@ static VALUE nm_clapack_potrs(VALUE self, VALUE order, VALUE uplo, VALUE n, VALU
       NULL, NULL, NULL, NULL, NULL, // integers not allowed due to division
       nm::math::clapack_potrs<float,false>,
       nm::math::clapack_potrs<double,false>,
-#if defined (HAVE_CLAPACK_H) || defined (HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
       clapack_cpotrs, clapack_zpotrs, // call directly, same function signature!
 #else // Especially important for Mac OS, which doesn't seem to include the ATLAS clapack interface.
       nm::math::clapack_potrs<nm::Complex64,true>,
@@ -1693,7 +1693,7 @@ static VALUE nm_clapack_potrs(VALUE self, VALUE order, VALUE uplo, VALUE n, VALU
  * having to wait around for an exception to be thrown.
  */
 static VALUE nm_has_clapack(VALUE self) {
-#if defined (HAVE_CLAPACK_H) || defined (HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
   return Qfalse;
 #else
   return Qtrue;
@@ -1712,7 +1712,7 @@ static VALUE nm_has_clapack(VALUE self) {
  * Returns an array giving the pivot indices (normally these are argument #5).
  */
 static VALUE nm_clapack_getri(VALUE self, VALUE order, VALUE n, VALUE a, VALUE lda, VALUE ipiv) {
-#if !defined (HAVE_CLAPACK_H) && !defined (HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
   rb_raise(rb_eNotImpError, "getri currently requires CLAPACK");
 #endif
 
@@ -1720,7 +1720,7 @@ static VALUE nm_clapack_getri(VALUE self, VALUE order, VALUE n, VALUE a, VALUE l
       NULL, NULL, NULL, NULL, NULL, // integers not allowed due to division
       nm::math::clapack_getri<float>,
       nm::math::clapack_getri<double>,
-#if defined (HAVE_CLAPACK_H) || defined (HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
       clapack_cgetri, clapack_zgetri, // call directly, same function signature!
 #else // Especially important for Mac OS, which doesn't seem to include the ATLAS clapack interface.
       nm::math::clapack_getri<nm::Complex64>,
@@ -1768,7 +1768,7 @@ static VALUE nm_clapack_getri(VALUE self, VALUE order, VALUE n, VALUE a, VALUE l
  * Returns an array giving the pivot indices (normally these are argument #5).
  */
 static VALUE nm_clapack_potri(VALUE self, VALUE order, VALUE uplo, VALUE n, VALUE a, VALUE lda) {
-#if !defined (HAVE_CLAPACK_H) && !defined (HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
   rb_raise(rb_eNotImpError, "getri currently requires CLAPACK");
 #endif
 
@@ -1776,7 +1776,7 @@ static VALUE nm_clapack_potri(VALUE self, VALUE order, VALUE uplo, VALUE n, VALU
       NULL, NULL, NULL, NULL, NULL, // integers not allowed due to division
       nm::math::clapack_potri<float>,
       nm::math::clapack_potri<double>,
-#if defined (HAVE_CLAPACK_H) || defined (HAVE_ATLAS_CLAPACK_H)
+#ifdef HAVE_CLAPACK_DGETRF
       clapack_cpotri, clapack_zpotri, // call directly, same function signature!
 #else // Especially important for Mac OS, which doesn't seem to include the ATLAS clapack interface.
       nm::math::clapack_potri<nm::Complex64>,
