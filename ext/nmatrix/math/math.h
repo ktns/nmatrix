@@ -545,7 +545,7 @@ inline void smmp_sort_columns(const size_t n, const IType* ia, IType* ja, DType*
  */
 template <typename DType>
 inline int potrf(const enum CBLAS_ORDER order, const enum CBLAS_UPLO uplo, const int N, DType* A, const int lda) {
-#if defined HAVE_CLAPACK_H || defined HAVE_ATLAS_CLAPACK_H
+#ifdef HAVE_CLAPACK_DGETRF
   rb_raise(rb_eNotImpError, "not yet implemented for non-BLAS dtypes");
 #else
   rb_raise(rb_eNotImpError, "only CLAPACK version implemented thus far");
@@ -942,7 +942,7 @@ inline void lauum(const enum CBLAS_ORDER order, const enum CBLAS_UPLO uplo, cons
 }
 
 
-#if defined HAVE_CLAPACK_H || defined HAVE_ATLAS_CLAPACK_H
+#ifdef HAVE_CLAPACK_DGETRF
 template <bool is_complex>
 inline void lauum(const enum CBLAS_ORDER order, const enum CBLAS_UPLO uplo, const int N, float* A, const int lda) {
   clapack_slauum(order, uplo, N, A, lda);
@@ -1033,7 +1033,7 @@ inline int potri(const enum CBLAS_ORDER order, const enum CBLAS_UPLO uplo, const
 }
 
 
-#if defined HAVE_CLAPACK_H || defined HAVE_ATLAS_CLAPACK_H
+#ifdef CHVE_CLAPACK_DGETRF
 template <>
 inline int potri(const enum CBLAS_ORDER order, const enum CBLAS_UPLO uplo, const int n, float* a, const int lda) {
   return clapack_spotri(order, uplo, n, a, lda);
