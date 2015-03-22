@@ -186,9 +186,7 @@ ldefaults = {
   atlas: ["/usr/local/lib", "/usr/local/atlas/lib", "/usr/lib", "/usr/lib64/atlas"]
 }.each{|_,dirs|dirs.select!(&Dir.method(:exist?))}
 
-if have_library("clapack") # Usually only applies for Mac OS X
-  $libs += " -lclapack "
-end
+have_library("clapack") # Usually only applies for Mac OS X
 
 have_library('lapack_atlas', 'clapack_dgetrf')
 
