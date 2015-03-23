@@ -1,0 +1,188 @@
+data/data.o: $(srcdir)/data/data.cpp \
+ $(srcdir)/types.h $(srcdir)/data/data.h \
+ $(srcdir)/nmatrix.h $(srcdir)/nm_memory.h \
+ $(srcdir)/data/complex.h \
+ $(srcdir)/data/rational.h \
+ $(srcdir)/util/util.h \
+ $(srcdir)/data/ruby_object.h \
+ $(srcdir)/ruby_constants.h
+math.o: $(srcdir)/math.cpp \
+ $(srcdir)/math/inc.h $(srcdir)/data/data.h \
+ $(srcdir)/nmatrix.h \
+ $(srcdir)/nm_memory.h $(srcdir)/types.h \
+ $(srcdir)/data/complex.h \
+ $(srcdir)/data/rational.h \
+ $(srcdir)/util/util.h \
+ $(srcdir)/data/ruby_object.h \
+ $(srcdir)/ruby_constants.h \
+ $(srcdir)/math/gesdd.h \
+ $(srcdir)/math/gesvd.h $(srcdir)/math/geev.h \
+ $(srcdir)/math/swap.h $(srcdir)/math/imax.h \
+ $(srcdir)/math/scal.h $(srcdir)/math/ger.h \
+ $(srcdir)/math/getf2.h \
+ $(srcdir)/math/laswp.h $(srcdir)/math/trsm.h \
+ $(srcdir)/math/long_dtype.h \
+ $(srcdir)/math/gemm.h $(srcdir)/math/gemv.h \
+ $(srcdir)/math/asum.h $(srcdir)/math/nrm2.h \
+ $(srcdir)/math/getrf.h \
+ $(srcdir)/math/getri.h \
+ $(srcdir)/math/getrs.h \
+ $(srcdir)/math/potrs.h $(srcdir)/math/rot.h \
+ $(srcdir)/math/rotg.h $(srcdir)/math/math.h \
+ $(srcdir)/storage/dense/dense.h \
+ $(srcdir)/data/data.h \
+ $(srcdir)/storage/dense/../common.h \
+ $(srcdir)/nmatrix.h \
+ $(srcdir)/ruby_constants.h
+nmatrix.o: $(srcdir)/nmatrix.cpp \
+ nmatrix_config.h $(srcdir)/types.h \
+ $(srcdir)/data/data.h $(srcdir)/nmatrix.h \
+ $(srcdir)/nm_memory.h $(srcdir)/types.h \
+ $(srcdir)/data/complex.h \
+ $(srcdir)/data/rational.h \
+ $(srcdir)/util/util.h \
+ $(srcdir)/data/ruby_object.h \
+ $(srcdir)/ruby_constants.h \
+ $(srcdir)/math/math.h $(srcdir)/util/io.h \
+ $(srcdir)/data/data.h \
+ $(srcdir)/storage/storage.h \
+ $(srcdir)/storage/common.h \
+ $(srcdir)/storage/dense/dense.h \
+ $(srcdir)/storage/dense/../common.h \
+ $(srcdir)/storage/list/list.h \
+ $(srcdir)/storage/list/../common.h \
+ $(srcdir)/util/sl_list.h \
+ $(srcdir)/storage/yale/yale.h \
+ $(srcdir)/storage/yale/../../types.h \
+ $(srcdir)/storage/yale/../../data/data.h \
+ $(srcdir)/storage/yale/../common.h \
+ $(srcdir)/storage/yale/../../nmatrix.h \
+ $(srcdir)/storage/storage.h \
+ $(srcdir)/storage/list/list.h \
+ $(srcdir)/storage/yale/yale.h \
+ $(srcdir)/nmatrix.h \
+ $(srcdir)/ruby_constants.h \
+ $(srcdir)/ruby_nmatrix.c
+ruby_constants.o: $(srcdir)/ruby_constants.cpp
+storage/common.o: $(srcdir)/storage/common.cpp \
+ $(srcdir)/storage/common.h \
+ $(srcdir)/data/data.h $(srcdir)/nmatrix.h \
+ $(srcdir)/nm_memory.h $(srcdir)/types.h \
+ $(srcdir)/data/complex.h \
+ $(srcdir)/data/rational.h \
+ $(srcdir)/util/util.h \
+ $(srcdir)/data/ruby_object.h \
+ $(srcdir)/ruby_constants.h
+storage/dense/dense.o: $(srcdir)/storage/dense/dense.cpp \
+ $(srcdir)/storage/dense/../../data/data.h \
+ $(srcdir)/nmatrix.h $(srcdir)/nm_memory.h \
+ $(srcdir)/types.h \
+ $(srcdir)/storage/dense/../../data/complex.h \
+ $(srcdir)/storage/dense/../../data/rational.h \
+ $(srcdir)/util/util.h \
+ $(srcdir)/storage/dense/../../data/ruby_object.h \
+ $(srcdir)/ruby_constants.h \
+ $(srcdir)/storage/dense/../../math/long_dtype.h \
+ $(srcdir)/storage/dense/../../math/gemm.h \
+ $(srcdir)/storage/dense/../../math/gemv.h \
+ $(srcdir)/storage/dense/../../math/math.h \
+ $(srcdir)/storage/dense/../common.h \
+ $(srcdir)/data/data.h \
+ $(srcdir)/storage/dense/dense.h
+storage/list/list.o: $(srcdir)/storage/list/list.cpp \
+ $(srcdir)/storage/list/../../types.h \
+ $(srcdir)/storage/list/../../data/data.h \
+ $(srcdir)/nmatrix.h $(srcdir)/nm_memory.h \
+ $(srcdir)/types.h \
+ $(srcdir)/storage/list/../../data/complex.h \
+ $(srcdir)/storage/list/../../data/rational.h \
+ $(srcdir)/util/util.h \
+ $(srcdir)/storage/list/../../data/ruby_object.h \
+ $(srcdir)/ruby_constants.h \
+ $(srcdir)/storage/list/../dense/dense.h \
+ $(srcdir)/data/data.h \
+ $(srcdir)/storage/list/../dense/../common.h \
+ $(srcdir)/storage/list/../common.h \
+ $(srcdir)/storage/list/list.h \
+ $(srcdir)/util/sl_list.h \
+ $(srcdir)/storage/list/../../math/math.h \
+ $(srcdir)/storage/list/../../util/sl_list.h
+storage/storage.o: $(srcdir)/storage/storage.cpp \
+ $(srcdir)/data/data.h $(srcdir)/nmatrix.h \
+ $(srcdir)/nm_memory.h $(srcdir)/types.h \
+ $(srcdir)/data/complex.h \
+ $(srcdir)/data/rational.h \
+ $(srcdir)/util/util.h \
+ $(srcdir)/data/ruby_object.h \
+ $(srcdir)/ruby_constants.h \
+ $(srcdir)/storage/storage.h \
+ $(srcdir)/storage/common.h \
+ $(srcdir)/storage/dense/dense.h \
+ $(srcdir)/storage/dense/../common.h \
+ $(srcdir)/storage/list/list.h \
+ $(srcdir)/storage/list/../common.h \
+ $(srcdir)/util/sl_list.h \
+ $(srcdir)/storage/yale/yale.h \
+ $(srcdir)/storage/yale/../../types.h \
+ $(srcdir)/storage/yale/../../data/data.h \
+ $(srcdir)/storage/yale/../common.h \
+ $(srcdir)/storage/yale/../../nmatrix.h
+storage/yale/yale.o: $(srcdir)/storage/yale/yale.cpp \
+ $(srcdir)/storage/yale/../../data/data.h \
+ $(srcdir)/nmatrix.h $(srcdir)/nm_memory.h \
+ $(srcdir)/types.h \
+ $(srcdir)/storage/yale/../../data/complex.h \
+ $(srcdir)/storage/yale/../../data/rational.h \
+ $(srcdir)/util/util.h \
+ $(srcdir)/storage/yale/../../data/ruby_object.h \
+ $(srcdir)/ruby_constants.h \
+ $(srcdir)/storage/yale/../../math/math.h \
+ $(srcdir)/storage/yale/../common.h \
+ $(srcdir)/data/data.h \
+ $(srcdir)/storage/yale/../../nmatrix.h \
+ $(srcdir)/storage/yale/../../data/meta.h \
+ $(srcdir)/storage/yale/iterators/base.h \
+ $(srcdir)/storage/yale/iterators/stored_diagonal.h \
+ $(srcdir)/storage/yale/iterators/row_stored_nd.h \
+ $(srcdir)/storage/yale/iterators/row_stored.h \
+ $(srcdir)/storage/yale/iterators/row.h \
+ $(srcdir)/storage/yale/iterators/iterator.h \
+ $(srcdir)/storage/yale/class.h \
+ $(srcdir)/storage/yale/../dense/dense.h \
+ $(srcdir)/storage/yale/../dense/../common.h \
+ $(srcdir)/storage/yale/math/transpose.h \
+ $(srcdir)/storage/yale/yale.h \
+ $(srcdir)/storage/yale/../../types.h \
+ $(srcdir)/storage/yale/../../ruby_constants.h
+util/io.o: $(srcdir)/util/io.cpp \
+ $(srcdir)/util/io.h $(srcdir)/nmatrix.h \
+ $(srcdir)/nm_memory.h $(srcdir)/data/data.h \
+ $(srcdir)/types.h $(srcdir)/data/complex.h \
+ $(srcdir)/data/rational.h \
+ $(srcdir)/util/util.h \
+ $(srcdir)/data/ruby_object.h \
+ $(srcdir)/ruby_constants.h \
+ $(srcdir)/storage/storage.h \
+ $(srcdir)/storage/common.h \
+ $(srcdir)/storage/dense/dense.h \
+ $(srcdir)/storage/dense/../common.h \
+ $(srcdir)/storage/list/list.h \
+ $(srcdir)/storage/list/../common.h \
+ $(srcdir)/util/sl_list.h \
+ $(srcdir)/storage/yale/yale.h \
+ $(srcdir)/storage/yale/../../types.h \
+ $(srcdir)/storage/yale/../../data/data.h \
+ $(srcdir)/storage/yale/../common.h \
+ $(srcdir)/storage/yale/../../nmatrix.h
+util/sl_list.o: $(srcdir)/util/sl_list.cpp \
+ $(srcdir)/types.h $(srcdir)/data/data.h \
+ $(srcdir)/nmatrix.h $(srcdir)/nm_memory.h \
+ $(srcdir)/data/complex.h \
+ $(srcdir)/data/rational.h \
+ $(srcdir)/util/util.h \
+ $(srcdir)/data/ruby_object.h \
+ $(srcdir)/ruby_constants.h \
+ $(srcdir)/util/sl_list.h \
+ $(srcdir)/storage/list/list.h \
+ $(srcdir)/storage/list/../common.h \
+ $(srcdir)/util/sl_list.h
