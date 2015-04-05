@@ -133,27 +133,44 @@ def gplusplus_version
   "#{major}.#{minor}.#{patch}"
 end
 
-
-if CONFIG['CXX'] == 'clang++'
-  $CPP_STANDARD = 'c++11'
-
-else
-  version = gplusplus_version
-  if version < '4.3.0' && CONFIG['CXX'] == 'g++'  # see if we can find a newer G++, unless it's been overridden by user
-    if !find_newer_gplusplus
-      raise("You need a version of g++ which supports -std=c++0x or -std=c++11. If you're on a Mac and using Homebrew, we recommend using mac-brew-gcc.sh to install a more recent g++.")
-    end
-    version = gplusplus_version
+def test_cpp0x
+  cc = RbConfig::CONFIG['CC'] 
+  begin 
+    RbConfig::CONFIG['CC'] = p(RbConfig::CONFIG['CXX'] )
+    p RbConfig::CONFIG['CC']
+    return try_compile(<<EOS, '-std=c++0x')
+void test(){
+auto i = 1;
+}
+EOS
+  ensure
+    RbConfig::CONFIG['CC'] = cc
   end
-
-  if version < '4.7.0'
-    $CPP_STANDARD = 'c++0x'
-  else
-    $CPP_STANDARD = 'c++11'
-  end
-  puts "using C++ standard... #{$CPP_STANDARD}"
-  puts "g++ reports version... " + `#{CONFIG['CXX']} --version|head -n 1|cut -f 3 -d " "`
 end
+
+def test_cpp11
+  cc = RbConfig::CONFIG['CC'] 
+  begin 
+    RbConfig::CONFIG['CC'] = RbConfig::CONFIG['CXX'] 
+    return try_compile(<<EOS, '-std=c++11')
+void test(){
+auto i = 1;
+}
+EOS
+EOS
+  ensure
+    RbConfig::CONFIG['CC'] = cc
+  end
+end
+
+if test_cpp11
+  $CPP_STANDARD = 'c++11'
+elsif test_cpp0x
+  $CPP_STANDARD = 'c++0x'
+else
+  raise "compiler not understand either c++11 or c++0x!"
+end
+
 
 # add smmp in to get generic transp; remove smmp2 to eliminate funcptr transp
 
