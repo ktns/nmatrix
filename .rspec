@@ -1,2 +1,3 @@
 --color
+--require rspec/legacy_formatters
 --format RSpec::Longrun::Formatter

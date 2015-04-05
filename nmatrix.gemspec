@@ -49,7 +49,8 @@ EOF
   gem.add_development_dependency 'rake', '~>10.3'
   gem.add_development_dependency 'rake-compiler', '~>0.8'
   gem.add_development_dependency 'rdoc', '~>4.0', '>=4.0.1'
-  gem.add_development_dependency 'rspec', '~>2.99'
+  gem.add_development_dependency 'rspec', '~>3.2'
   gem.add_development_dependency 'rspec-longrun', '~>1.0'
+  gem.add_development_dependency 'rspec-legacy_formatters', '~>1.0'
 end
 
