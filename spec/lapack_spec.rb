@@ -103,7 +103,7 @@ describe NMatrix::LAPACK do
           b = NMatrix.new(:dense, 3, [5,3,-1, 0,3,1, 0,0,3], dtype)
           expect(a).to eq(b)
         rescue NotImplementedError => e
-          pending e.to_s
+          skip e.to_s
         end
 
         # then do lower
@@ -136,7 +136,7 @@ describe NMatrix::LAPACK do
           b = NMatrix.new(:dense, 3, [-5,0,-2,-4,1,-1,1.5,0,0.5], dtype)
           expect(a).to eq(b)
         rescue NotImplementedError => e
-          pending e.to_s
+          skip e.to_s
         end
       end
 
@@ -187,7 +187,7 @@ describe NMatrix::LAPACK do
           # There is a subtlety here. The LAPACK *gesvd functions expect a matrix stored in column-major form, so we need to some adjusting for this. See lib/nmatrix/lapack.rb for an explanation of why we use these arguments
           info = NMatrix::LAPACK::lapack_gesvd(:a, :a, a.shape[1], a.shape[0], a, a.shape[1], s, vt, ldvt, u, ldu, 500)
         rescue NotImplementedError => e
-          pending e.to_s
+          skip e.to_s
         end
 
         expect(u).to be_within(err).of(u_true)
@@ -252,7 +252,7 @@ describe NMatrix::LAPACK do
           # There is a subtlety here. The LAPACK *gesdd functions expect a matrix stored in column-major form, so we need to some adjusting for this. See lib/nmatrix/lapack.rb for an explanation of why we use these arguments
           info = NMatrix::LAPACK::lapack_gesdd(:a, a.shape[1], a.shape[0], a, a.shape[1], s, vt, ldvt, u, ldu, 500)
         rescue NotImplementedError => e
-          pending e.to_s
+          skip e.to_s
         end
 
         expect(u).to be_within(err).of(u_true)
@@ -304,7 +304,7 @@ describe NMatrix::LAPACK do
         begin
           u, s, vt = a.gesvd
         rescue NotImplementedError => e
-          pending e.to_s
+          skip e.to_s
         end
         expect(u).to be_within(err).of(u_true)
         expect(vt).to be_within(err).of(vt_true)
@@ -356,7 +356,7 @@ describe NMatrix::LAPACK do
         begin
           u, s, vt = a.gesdd
         rescue NotImplementedError => e
-          pending e.to_s
+          skip e.to_s
         end
         expect(u).to be_within(err).of(u_true)
         expect(vt).to be_within(err).of(vt_true)
@@ -373,7 +373,7 @@ describe NMatrix::LAPACK do
       end
 
       it "exposes geev" do
-        pending("needs rational implementation") if dtype.to_s =~ /rational/
+        skip("needs rational implementation") if dtype.to_s =~ /rational/
         ary = %w|-1.01 0.86 -4.60 3.31 -4.81
                      3.98 0.53 -7.04 5.29 3.55
                      3.30 8.26 -3.89 8.20 -1.51
@@ -401,7 +401,7 @@ describe NMatrix::LAPACK do
         vr = vr.transpose
         vl = vl.transpose
 
-        pending("Need complex example") if dtype.to_s =~ /complex/
+        skip("Need complex example") if dtype.to_s =~ /complex/
         vl_true = NMatrix.new(:dense, 5, [0.04,  0.29,  0.13,  0.33, -0.04,
                                           0.62,  0.0,  -0.69,  0.0,  -0.56,
                                          -0.04, -0.58,  0.39,  0.07,  0.13,
